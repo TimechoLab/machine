@@ -1,7 +1,8 @@
 package com.timecho.registered;
 
 import cn.hutool.core.date.DateUtil;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.swing.*;
@@ -165,7 +166,7 @@ public class RegisteredMachine {
             try {
                 String privateDecrypt = EncRSA.privateDecrypt(machineText);
                 String systemInfoStr = new String(Base64.decodeBase64(privateDecrypt.getBytes()));
-                JSONObject systemInfo = JSONObject.parseObject(systemInfoStr);
+                JSONObject systemInfo = JSON.parseObject(systemInfoStr);
                 systemInfo.put("expireDate", endYearSelect + "-" + endMonthSelect + "-" + endDaySelect);
                 systemInfo.put("maxAllowedTimeSeriesNumber", Integer.parseInt(maxSeriesTextText));
                 systemInfo.put("maxInputFrequence", Integer.parseInt(maxFrequenceTextText));
